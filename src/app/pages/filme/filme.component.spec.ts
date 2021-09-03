@@ -5,6 +5,7 @@ import { Filme } from 'src/app/interfaces/filme.interface';
 import { FilmeService } from 'src/app/services/filme.service';
 import { FilmeComponent } from './filme.component';
 
+// Mock Data
 const mockFilmes: Filme[] = [
   {
     nomeFilme: 'Toy Story',
@@ -23,14 +24,15 @@ const mockFilmes: Filme[] = [
   },
 ]
 
-fdescribe('FilmeComponent', () => {
+describe('FilmeComponent', () => {
   let component: FilmeComponent;
   let fixture: ComponentFixture<FilmeComponent>;
   let filmeService: FilmeService;
 
+  // Mock Service
   class MockFilmeService {
     filmes: Filme[] = mockFilmes;
-    
+
     obterFilmes(): Filme[] {
       return this.filmes;
     }
@@ -45,17 +47,20 @@ fdescribe('FilmeComponent', () => {
       declarations: [FilmeComponent],
       imports: [ReactiveFormsModule],
       providers: [
-        { provide: FilmeService, useClass: MockFilmeService }
+        { provide: FilmeService, useClass: MockFilmeService } // UseClass retorna a instância do MockFilmeService, quando o component solicitar FilmeService
       ]
     })
       .compileComponents();
-
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FilmeComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture.detectChanges(); // Detecção de alterações;
+    // fixture.detectChanges() diz ao Angular para executar a 'detecção de alterações'. Cada vez que é chamado, ele atualiza as ligações de dados,
+    // e renderiza novamente o componente com base nos dados atualizados.
+    // Isso ocorre porque, quando o component é criado pela primeira vez, 
+    // nenhuma 'detecção de alteração' foi acionada e, portanto, a tabela não mostra os filmes carregados;
     filmeService = TestBed.inject(FilmeService);
   });
 
@@ -79,7 +84,7 @@ fdescribe('FilmeComponent', () => {
   });
 
   it('deve obter os filmes ao executar o ngOnInit', () => {
-    spyOn(filmeService, 'obterFilmes').and.callThrough();
+    spyOn(filmeService, 'obterFilmes').and.callThrough(); // Observa se a função  filmeService.obterFilmes será chamada;
     component.ngOnInit();
     expect(filmeService.obterFilmes).toHaveBeenCalled();
     expect(component.filmes).toEqual(mockFilmes);
@@ -93,7 +98,7 @@ fdescribe('FilmeComponent', () => {
   });
 
   it('deve salvar um filme e verificar se o mesmo é mostrado na tabela', () => {
-    spyOn(component, 'salvarFilme').and.callThrough();
+    spyOn(component, 'salvarFilme').and.callThrough(); 
     preecherForumularioExemplo();
     fixture.detectChanges();
     const btnSalvar: HTMLButtonElement = fixture.debugElement.query(By.css("button")).nativeElement;

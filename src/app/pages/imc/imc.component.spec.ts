@@ -19,7 +19,7 @@ describe('ImcComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('deve criar o component', () => {
     expect(component).toBeTruthy();
   });
 });

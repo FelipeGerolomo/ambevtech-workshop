@@ -4,6 +4,7 @@ import { FilmeComponent } from './pages/filme/filme.component';
 import { ImcComponent } from './pages/imc/imc.component';
 
 const routes: Routes = [
+    { path: '',   redirectTo: '/filme', pathMatch: 'full' },
     { path: 'filme', component: FilmeComponent },
     { path: 'imc', component: ImcComponent }
 ];
