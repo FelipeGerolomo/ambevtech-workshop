@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1 class="text-center">Filmes</h1>
+      <form class="form" [formGroup]="filmeForm" (ngSubmit)="salvarFilme()">
+        <div class="row">
+          <div class="col">
+            <label>Nome</label>
+            <input formControlName="nomeFilme" type="text" />
+          </div>
+          <div class="col">
+            <label>Diretor</label>
+            <input formControlName="nomeDiretor" type="text" />
+          </div>
+          <div class="col">
+            <label>Ano de Lançamento</label>
+            <input formControlName="anoLancamento" type="number" />
+          </div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button [disabled]="!filmeForm.valid" type="submit">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row lista-filme">
+    <div class="col">
+      <table>
+        <thead>
+          <tr>
+            <th>Filme</th>
+            <th>Diretor</th>
+            <th>Ano de Lançamento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let filme of filmes">
+            <td>{{filme.nomeFilme}}</td>
+            <td>{{filme.nomeDiretor}}</td>
+            <td>{{filme.anoLancamento}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

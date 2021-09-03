@@ -1,1 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+small,
+button,
+input {
+    font-family: "Open Sans", sans-serif;
+}
+
+.text-center {
+    text-align: center;
+}
+
+input {
+    width: 98%;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+table {
+    font-family: "Open Sans", sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}

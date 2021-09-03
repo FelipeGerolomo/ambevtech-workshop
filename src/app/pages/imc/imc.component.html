@@ -1,0 +1,40 @@
+<div class="container-sm">
+  <div class="row">
+    <div class="col">
+      <h1>Cálculo IMC</h1>
+      <h4>
+        IMC é a sigla para Índice de Massa Corpórea, parâmetro adotado pela
+        Organização Mundial de Saúde para calcular o peso ideal de cada pessoa.
+        O índice é calculado da seguinte maneira: divide-se o peso do paciente
+        pela sua altura elevada ao quadrado. Diz-se que o indivíduo tem peso
+        normal quando o resultado do IMC está entre 18,5 e 24,9. Quer descobrir
+        seu IMC? Insira seu peso e sua altura nos campos abaixo e compare com os
+        índices da tabela. Importante: siga os exemplos e use pontos como
+        separadores.
+        <br>
+        Fonte: <a href="https://www.programasaudefacil.com.br/calculadora-de-imc">Programa Saúde Fácil</a>
+      </h4>
+      <form class="form" [formGroup]="imcForm" (ngSubmit)="calcularImc()">
+        <div class="row">
+          <div class="col">
+            <label>Altura (Ex. 1,70m)</label>
+            <input formControlName="altura" type="number" />
+          </div>
+          <div class="col">
+            <label>Peso (Ex. 83,50Kg)</label>
+            <input formControlName="peso" type="number" />
+          </div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button [disabled]="!imcForm.valid" type="submit">Calcular</button>
+        </div>
+      </form>
+      <div class="row">
+          <div class="col">
+              <h1 *ngIf="imc">Seu IMC é {{imc}}kg/m2</h1>
+              <h1 *ngIf="imcMsg">Classificação: {{imcMsg}}.</h1>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
